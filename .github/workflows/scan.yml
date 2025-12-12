@@ -17,5 +17,5 @@ jobs:
         | grep -o -E "https://.+?_Linux_x86_64.tar.gz")" > terrascan.tar.gz
         tar -xf terrascan.tar.gz terrascan && rm terrascan.tar.gz
         sudo install terrascan /usr/local/bin && rm terrascan
-        cd terraform/
+        cd /home/student_03_a3205f7769ce/lab/terraform
         terrascan scan -i helm
