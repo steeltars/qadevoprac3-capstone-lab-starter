@@ -26,3 +26,10 @@ kubectl patch deployment \
   metrics-server --namespace kube-system \
   --type='json' \
   -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'
+helm repo add prom https://prometheus-community.github.io/helm-charts
+helm repo update
+helm install prometheus prom/kube-prometheus-stack \
+--set prometheus.service.type=NodePort \
+--set alertmanager.service.type=NodePort \
+--namespace monitoring \
+--create-namespace
