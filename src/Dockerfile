@@ -2,14 +2,16 @@ FROM node:20-alpine
 
 LABEL org.opencontainers.image.source=https://github.com/qa-tech-training/qadevoprac3-capstone-lab-starter
 
-WORKDIR /app
+RUN adduser -D appuser
 
-# TODO: add the instructions needed to copy the package.json, install dependencies, and copy the server.js file
+WORKDIR /app
 
 COPY package.json .
 
 RUN npm install
 
 COPY server.js . 
+
+USER appuser
 
 CMD ["node", "server.js"]
