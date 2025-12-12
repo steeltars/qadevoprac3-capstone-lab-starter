@@ -17,4 +17,11 @@ jobs:
         | grep -o -E "https://.+?_Linux_x86_64.tar.gz")" > terrascan.tar.gz
         tar -xf terrascan.tar.gz terrascan && rm terrascan.tar.gz
         sudo install terrascan /usr/local/bin && rm terrascan
-        terrascan scan -i helm
+
+        if [ -d "terraform" ]; then
+           cd terraform
+           terrascan scan -i helm
+         else
+           echo "Directory 'terraform' not found. Skipping Terrascan scan."
+         fi
+
